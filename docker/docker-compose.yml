@@ -1,0 +1,19 @@
+version: "3"
+services:
+  web:
+    build: ./
+    image: mailcatcher_php
+    container_name: mailcatcher_php
+    volumes:
+      - ./conf/mail.ini:/usr/local/etc/php/conf.d/mail.ini
+      - ../src:/var/www
+    ports:
+      - 8080:80
+
+  mailcatcher:
+    image: sj26/mailcatcher
+    container_name: mailcatcher_smtp
+    ports:
+      - 1025:1025
+      - 1080:1080
+
